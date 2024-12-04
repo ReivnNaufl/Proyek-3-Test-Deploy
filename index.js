@@ -14,7 +14,6 @@ import routerext from "./src/routes/external.js";
 import pool from "./config/config.js";
 import connectPgSimple from "connect-pg-simple";
 
-const PORT = 8000;
 const app = express();
 
 const pgSession = connectPgSimple(session);
@@ -48,8 +47,8 @@ app.use('/linktree',  routerLinktree);
 app.use('/tes',routerext);
 
 
-app.listen(PORT, () => {;
-    console.log(`Server utama running at port ${PORT}`);
+app.listen(process.env.PORT, () => {;
+    console.log(`Server utama running at port ${process.env.PORT}`);
 });
 
 app.get('/',checkAuth, (req, res) => {
