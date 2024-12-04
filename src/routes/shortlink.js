@@ -20,6 +20,6 @@ routerShortlink.route("/history").get(shortlinkController.getShortlinksPaginated
 
 routerShortlink.route("/delete/:id").get(shortlinkController.deleteSl);
 
-routerShortlink.route("/sl").get(shortlinkController.secondRedirect);
+routerShortlink.route("/sl/:id").get(shortlinkController.secondRedirect);
 
 export default routerShortlink;
