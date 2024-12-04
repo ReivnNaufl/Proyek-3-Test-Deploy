@@ -178,7 +178,7 @@ const login = async(req,res) =>{
 
         if (result.rows.length > 0) {
             const hashedPassword = result.rows[0].password;
-            const isPasswordCorrect = await argon2.verify(hashedPassword,password.toString());
+            const isPasswordCorrect = await argon2.verify(hashedPassword,password);
 
             if (isPasswordCorrect) {
                 req.session.email = email;
@@ -190,7 +190,7 @@ const login = async(req,res) =>{
             return res.status(404).send({ msg: 'Pengguna tidak ditemukan' });
         }
     } catch (err) {
-        console.error(`${err}`);
+        console.error(err);
         return res.status(500).send({ msg: 'Terjadi kesalahan server'});
     }
 }
