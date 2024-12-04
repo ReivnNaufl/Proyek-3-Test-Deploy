@@ -177,7 +177,7 @@ const login = async(req,res) =>{
         const result = await account.emails(email);
 
         if (result.rows.length > 0) {
-            const hashedPassword = result.rows[0].password;
+            const hashedPassword = result.rows[0].password.toString();
             const isPasswordCorrect = await argon2.verify(hashedPassword,password);
 
             if (isPasswordCorrect) {
