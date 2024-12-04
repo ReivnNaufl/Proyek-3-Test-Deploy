@@ -93,7 +93,7 @@ function createDisplaySpan(content) {
 
 // Function to generate a short URL
 function generateShortUrl(userUrl) {
-  return "http://plbsh.polban.dev/" + encodeURIComponent(userUrl);
+  return "https://plbsh.polban.dev/" + encodeURIComponent(userUrl);
 }
 
 // Function to generate QR code data URL
