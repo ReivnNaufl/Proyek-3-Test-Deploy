@@ -13,6 +13,9 @@ import { log } from "console";
 import routerext from "./src/routes/external.js";
 import pool from "./config/config.js";
 import connectPgSimple from "connect-pg-simple";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
