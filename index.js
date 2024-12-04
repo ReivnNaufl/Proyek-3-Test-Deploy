@@ -17,8 +17,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const PORT = 80;
-
 const app = express();
 
 const pgSession = connectPgSimple(session);
@@ -52,8 +50,8 @@ app.use('/linktree',  routerLinktree);
 app.use('/tes',routerext);
 
 
-app.listen(PORT, () => {;
-    console.log(`Server utama running at port ${PORT}`);
+app.listen(process.env.PORT, () => {;
+    console.log(`Server utama running at port ${process.env.PORT}`);
 });
 
 app.get('/',checkAuth, (req, res) => {
