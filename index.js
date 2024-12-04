@@ -17,7 +17,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-PORT = 80;
+const PORT = 80;
 
 const app = express();
 
