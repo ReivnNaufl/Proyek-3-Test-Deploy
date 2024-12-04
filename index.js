@@ -54,8 +54,10 @@ app.listen(process.env.PORT, () => {;
     console.log(`Server utama running at port ${process.env.PORT}`);
 });
 
-app.get('/',checkAuth, (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'src', 'views', 'index.html'));
 })
 
 app.get('/:id', shortlinkController.firstRedirect);
+
+app.get('/sl/:id', shortlinkController.secondRedirect);

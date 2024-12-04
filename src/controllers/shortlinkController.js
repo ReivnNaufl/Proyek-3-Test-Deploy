@@ -152,7 +152,7 @@ const firstRedirect = async (req, res) => {
       //if false redirect to second web
       res.redirect(
         301,
-        `${URL}/shortlink/sl/${result.rows[0]["id_shortlink"]}`
+        `${URL}/sl/${result.rows[0]["id_shortlink"]}`
       );
       return;
     }
