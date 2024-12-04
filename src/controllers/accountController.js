@@ -100,7 +100,7 @@ const kirim_otp = async (req, res) => {
       req.session.email = email;
   
       // Redirect to verification page after successfully sending OTP
-      res.redirect('/account/verifikasi');  // <-- Redirection here
+      res.redirect(302, '/account/verifikasi');  // <-- Redirection here
   
     } catch (error) {
       // Handle errors
