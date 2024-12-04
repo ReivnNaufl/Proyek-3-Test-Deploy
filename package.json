@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index",
     "start:dev": "concurrently \"nodemon index\" \"nodemon iPolban\""
   },
   "keywords": [],
@@ -12,6 +13,7 @@
   "dependencies": {
     "argon2": "^0.41.1",
     "axios": "^1.7.7",
+    "connect-pg-simple": "^10.0.0",
     "crypto-random-string": "^5.0.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",

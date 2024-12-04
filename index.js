@@ -11,15 +11,24 @@ import routerLinktree from "./src/routes/linktree.js";
 import { loginSession } from "./src/middleware/loginSessionMid.js";
 import { log } from "console";
 import routerext from "./src/routes/external.js";
+import pool from "./config/config.js";
+import connectPgSimple from "connect-pg-simple";
 
 const PORT = 8000;
 const app = express();
 
+const pgSession = connectPgSimple(session);
+
 app.use(session({
-    secret: 'my-secret-key',
+    store: new pgSession({
+        pool : pool,
+        tableName: 'session',
+        createTableIfMissing: true,
+      }),
+    secret: process.env.FOO_COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }));
 
 
@@ -39,7 +48,7 @@ app.use('/linktree',  routerLinktree);
 app.use('/tes',routerext);
 
 
-app.listen(PORT, () => {
+app.listen(PORT, () => {;
     console.log(`Server utama running at port ${PORT}`);
 });
 
@@ -48,6 +57,3 @@ app.get('/',checkAuth, (req, res) => {
 })
 
 app.get('/:id', shortlinkController.firstRedirect);
-
-
-

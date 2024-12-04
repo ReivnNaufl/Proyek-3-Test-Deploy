@@ -133,7 +133,7 @@ document
 
 function generateShortUrl(userUrl) {
   // Ensure the generated short URL has the prefix 'http://localhost:8000/' and includes the user-provided URL
-  return "http://localhost:8000/" + encodeURIComponent(userUrl);
+  return "http://plbsh.polban.dev/" + encodeURIComponent(userUrl);
 }
 
 function generateQRCodeFromUrl(url) {

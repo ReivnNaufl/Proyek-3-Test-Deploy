@@ -5,6 +5,7 @@ import { __dirname } from "../../path.js";
 import path from "path";
 import { shorten } from "./shortlinkController.js";
 import Shortlink from "../models/shortlinkModel.js";
+import { URL } from "../../path.js";
 
 async function isIDunique(id) {
   const result = await Linktree.exists("id_linktree", id);
@@ -67,7 +68,7 @@ const createRoom = async (req, res) => {
     }
 
     const shortUrl = await shorten(
-      `http://localhost:8000/linktree/room?id=${id}`,
+      `${URL}/linktree/room?id=${id}`,
       req.session.email,
       custom,
       "linktree"
@@ -75,7 +76,7 @@ const createRoom = async (req, res) => {
     await Linktree.insert(id, body.title, custom, req.session.email, null);
     res
       .status(303)
-      .redirect(`http://localhost:8000/linktree/room-edit?id=${id}`);
+      .redirect(`${URL}/linktree/room-edit?id=${id}`);
   } catch (e) {
     console.log(e.message);
     res.status(500).send(e.message);
@@ -152,7 +153,7 @@ const getLinktree = async (req, res) => {
       bio: result.rows[0]["bio"],
       style: result.rows[0]["style"],
       btnArray: buttonData.rows,
-      url: "http://localhost:8000/" + result.rows[0]["linktree_url"],
+      url: "${URL}/" + result.rows[0]["linktree_url"],
     });
   } catch (e) {
     console.log(e.message);

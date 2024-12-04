@@ -43,12 +43,12 @@ async function fetchShortlink() {
   }
 
   try {
-    const response = await fetch(`http://localhost:8000/shortlink/get/${id}`);
+    const response = await fetch(`http://plbsh.polban.dev/shortlink/get/${id}`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    const shortUrl = "http://localhost:8000/" + data.short_url;
+    const shortUrl = "http://plbsh.polban.dev/" + data.short_url;
 
     // Update UI
     document.getElementById("shortlink-title").textContent = shortUrl;

@@ -7,6 +7,7 @@ import crypto from 'crypto';
 import path from 'path';
 import { __dirname } from '../../path.js';
 import { get } from 'https';
+import { URL } from '../../path.js';
 
 dotenv.config();
 
@@ -26,7 +27,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendVerificationEmail = (email, otp, verificationToken) => {
-    const verificationLink = `http://localhost:8000/account/vmail?token=${verificationToken}&email=${email}`;
+    const verificationLink = `${URL}/account/vmail?token=${verificationToken}&email=${email}`;
     const mailOptions = {
         from: {
             name: "Authenticator",
