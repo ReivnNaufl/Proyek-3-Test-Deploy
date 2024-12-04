@@ -190,8 +190,8 @@ const login = async(req,res) =>{
             return res.status(404).send({ msg: 'Pengguna tidak ditemukan' });
         }
     } catch (err) {
-        console.error(`${err}, Password: ${password}`);
-        return res.status(500).send({ msg: 'Terjadi kesalahan server' });
+        console.error(`${err}`);
+        return res.status(500).send({ msg: 'Terjadi kesalahan server' + password });
     }
 }
 
