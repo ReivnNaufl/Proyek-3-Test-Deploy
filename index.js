@@ -58,6 +58,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'src', 'views', 'landingpage.html'));
 })
 
+app.get('/dashboard', loginSession, (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'views', 'index.html'));
+})
+
 app.get('/:id', shortlinkController.firstRedirect);
 
 app.get('/sl/:id', shortlinkController.secondRedirect);
