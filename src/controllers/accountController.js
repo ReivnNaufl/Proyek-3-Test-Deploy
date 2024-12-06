@@ -114,22 +114,31 @@ const lgcforgpass = async (req, res) => {
 
 const kirim_otp = async (req, res) => {
     try {
+      console.log('check 1');
       const { email, password } = req.body;
   
       // Hash the password
       const hashedPassword = await argon2.hash(password);
       const otp = cryptoRandomString({ length: 6, type: 'numeric' });
       const verificationToken = cryptoRandomString({ length: 32, type: 'url-safe' });
+
+      console.log('check 2');
   
       // Store OTP and verification token with expiry time
       otpStorage[email] = { otp, expiresAt: Date.now() + 5 * 60 * 1000, hashedPassword };
       verificationTokenStorage[email] = { token: verificationToken, hashedPassword, expiresAt: Date.now() + 5 * 60 * 1000 };
+
+      console.log('check 3');
   
       // Send verification email
       await sendVerificationEmail(email, otp, verificationToken);
+
+      console.log('check 4');
   
       // Set session data
       req.session.email = email;
+
+      console.log('check 5');
   
       // Redirect to verification page after successfully sending OTP
       res.redirect('/account/verifikasi');  // <-- Redirection here
