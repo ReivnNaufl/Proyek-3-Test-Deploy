@@ -58,7 +58,7 @@ const sendVerificationEmail = async (email, otp, verificationToken) => {
     }
 
     const verificationLink = `http://localhost:8000/account/vmail?token=${verificationToken}&email=${email}`;
-    console.log('check 3.2');
+    console.log('check 3.2', transport);
     const mailOptions = {
         from: {
             name: "Authenticator",
