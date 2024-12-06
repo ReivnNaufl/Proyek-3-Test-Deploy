@@ -47,16 +47,6 @@ async function sendMail() {
     }
 }
 
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.USER,
-        pass: process.env.APP_PASS
-    }
-});
-
 const sendVerificationEmail = async (email, otp, verificationToken) => {
     // Ensure transport is created before sending email
     if (!transport) {
