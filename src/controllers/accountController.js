@@ -28,7 +28,9 @@ let transport; // Declare transport variable outside the function
 
 async function sendMail() {
     try {
+        console.log('check 3.1.1');
         const accessToken = await oAuth2Client.getAccessToken();
+        console.log('check 3.1.2');
         transport = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -40,6 +42,7 @@ async function sendMail() {
                 accessToken: accessToken,
             }
         });
+        console.log('check 3.1.3');
         return transport; // Return the transport for further use
     } catch (error) {
         console.error('Error creating transport:', error);
@@ -49,11 +52,13 @@ async function sendMail() {
 
 const sendVerificationEmail = async (email, otp, verificationToken) => {
     // Ensure transport is created before sending email
+    console.log('check 3.1');
     if (!transport) {
         await sendMail();
     }
 
     const verificationLink = `http://localhost:8000/account/vmail?token=${verificationToken}&email=${email}`;
+    console.log('check 3.2');
     const mailOptions = {
         from: {
             name: "Authenticator",
@@ -65,6 +70,7 @@ const sendVerificationEmail = async (email, otp, verificationToken) => {
         Atau klik link ini untuk verifikasi: ${verificationLink}`
     };
 
+    console.log('check 3.3');
     return transport.sendMail(mailOptions);
 };
 
