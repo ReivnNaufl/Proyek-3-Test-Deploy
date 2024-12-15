@@ -6,7 +6,6 @@ import Qr from '../models/qrModel.js';
 import cryptoRandomString from 'crypto-random-string';
 import fs from 'fs/promises';
 import { shorten } from './shortlinkController.js';
-import { BASE_URL } from '../../path.js';
 
 const generateQRCode = async (req, res) => {
   try {
