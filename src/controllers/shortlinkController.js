@@ -2,7 +2,7 @@ import Shortlink from "../models/shortlinkModel.js";
 import cryptoRandomString from "crypto-random-string";
 import { __dirname } from "../../path.js";
 import path from "path";
-import { domain } from "../../path.js";
+import { BASE_URL } from "../../path.js";
 
 const createSl = async (req, res) => {
   try {
@@ -29,7 +29,7 @@ const createSl = async (req, res) => {
       "shortlink"
     );
 
-    res.status(303).redirect(`${domain}/shortlink/res?id=${id}`);
+    res.status(303).redirect(`${BASE_URL}/shortlink/res?id=${id}`);
   } catch (err) {
     console.error("Terjadi error saat membuat shortlink:", err);
     res.status(500).send({
@@ -193,13 +193,13 @@ const firstRedirect = async (req, res) => {
     //check if destination exist
     if (result.rowCount === 0) {
       //if true redirect to not found page
-      res.redirect(307, `${domain}/shortlink/not-found`);
+      res.redirect(307, `${BASE_URL}/shortlink/not-found`);
       return;
     } else {
       //if false redirect to second web
       res.redirect(
         301,
-        `${domain}/sl/${result.rows[0]["id_shortlink"]}`
+        `${BASE_URL}/sl/${result.rows[0]["id_shortlink"]}`
       );
       return;
     }

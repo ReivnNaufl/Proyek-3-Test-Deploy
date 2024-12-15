@@ -7,7 +7,7 @@ import { shorten } from "./shortlinkController.js";
 import Shortlink from "../models/shortlinkModel.js";
 import { title } from "process";
 import { url } from "inspector";
-import { domain } from "../../path.js";
+import { BASE_URL } from "../../path.js";
 
 async function isIDunique(id) {
   const result = await Linktree.exists("id_linktree", id);
@@ -60,7 +60,7 @@ const createRoom = async (req, res) => {
     }
 
     const shortUrl = await shorten(
-      `${domain}/linktree/room?id=${id}`,
+      `${BASE_URL}/linktree/room?id=${id}`,
       req.session.email,
       custom,
       "linktree"
@@ -68,7 +68,7 @@ const createRoom = async (req, res) => {
     await Linktree.insert(id, body.title, custom, req.session.email, null);
     res
       .status(303)
-      .redirect(`${domain}/linktree/room-edit?id=${id}`);
+      .redirect(`${BASE_URL}/linktree/room-edit?id=${id}`);
   } catch (e) {
     console.error("Terjadi error saat membuat room:", e);
     res.status(500).send({
@@ -190,7 +190,7 @@ const getLinktree = async (req, res) => {
       bio: result.rows[0]["bio"],
       style: result.rows[0]["style"],
       btnArray: buttonData.rows,
-      url: `${domain}/` + result.rows[0]["linktree_url"],
+      url: `${BASE_URL}/` + result.rows[0]["linktree_url"],
     });
   } catch (e) {
     console.error("Terjadi error saat mengambil konten link-in-bio:", e);
