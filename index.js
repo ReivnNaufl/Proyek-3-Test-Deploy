@@ -16,7 +16,6 @@ import cors from 'cors';
 import connectPgSimple from "connect-pg-simple";
 import pool from "./config/config.js";
 
-const PORT = 8000;
 const app = express();
 
 const pgSession = connectPgSimple(session);
@@ -59,7 +58,7 @@ app.use('/tes',cors(),routerext);
 
 app.use('/landingpage', landingPageRouter)
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Server utama running at port ${PORT}`);
 });
 
