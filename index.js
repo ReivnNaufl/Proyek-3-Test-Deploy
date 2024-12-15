@@ -14,6 +14,7 @@ import routerext from "./src/routes/external.js";
 import landingPageRouter from "./src/routes/landingpage.js";
 import cors from 'cors';
 import connectPgSimple from "connect-pg-simple";
+import pool from "./config/config.js";
 
 const PORT = 8000;
 const app = express();
