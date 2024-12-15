@@ -1040,7 +1040,7 @@ async function saveChanges() {
     };
 
     const response = await fetch(
-      `http://localhost:8000/linktree/save?id=${idLinktree}`,
+      `https://plbsh.polban.dev/linktree/save?id=${idLinktree}`,
       {
         method: "PATCH",
         headers: {

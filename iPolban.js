@@ -8,8 +8,8 @@ app.use(express.json());
 
 app.use('/sl', routerShortlink);
 
-app.listen(PORT, () => {
-    console.log(`Server polban running at port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server polban running at port ${PORT}`);
+// });
 
 app.get('/sl/:id', shortlinkController.secondRedirect);

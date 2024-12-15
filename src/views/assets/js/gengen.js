@@ -44,7 +44,7 @@ async function fetchShortlink() {
 
   try {
     // Fetch data shortlink dari backend
-    const response = await fetch(`http://localhost:8000/shortlink/get/${id}`);
+    const response = await fetch(`https://plbsh.polban.dev/shortlink/get/${id}`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }

@@ -28,7 +28,7 @@ const createSl = async (req, res) => {
       "shortlink"
     );
 
-    res.status(303).redirect(`http://localhost:8000/shortlink/res?id=${id}`);
+    res.status(303).redirect(`${domain}/shortlink/res?id=${id}`);
   } catch (err) {
     console.error("Terjadi error saat membuat shortlink:", err);
     res.status(500).send({
@@ -192,13 +192,13 @@ const firstRedirect = async (req, res) => {
     //check if destination exist
     if (result.rowCount === 0) {
       //if true redirect to not found page
-      res.redirect(307, `http://localhost:8000/shortlink/not-found`);
+      res.redirect(307, `${domain}/shortlink/not-found`);
       return;
     } else {
       //if false redirect to second web
       res.redirect(
         301,
-        `http://localhost:8080/sl/${result.rows[0]["id_shortlink"]}`
+        `${domain}/sl/${result.rows[0]["id_shortlink"]}`
       );
       return;
     }

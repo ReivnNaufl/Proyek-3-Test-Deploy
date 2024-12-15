@@ -59,7 +59,7 @@ const createRoom = async (req, res) => {
     }
 
     const shortUrl = await shorten(
-      `http://localhost:8000/linktree/room?id=${id}`,
+      `${domain}/linktree/room?id=${id}`,
       req.session.email,
       custom,
       "linktree"
@@ -67,7 +67,7 @@ const createRoom = async (req, res) => {
     await Linktree.insert(id, body.title, custom, req.session.email, null);
     res
       .status(303)
-      .redirect(`http://localhost:8000/linktree/room-edit?id=${id}`);
+      .redirect(`${domain}/linktree/room-edit?id=${id}`);
   } catch (e) {
     console.error("Terjadi error saat membuat room:", e);
     res.status(500).send({
@@ -189,7 +189,7 @@ const getLinktree = async (req, res) => {
       bio: result.rows[0]["bio"],
       style: result.rows[0]["style"],
       btnArray: buttonData.rows,
-      url: "http://localhost:8000/" + result.rows[0]["linktree_url"],
+      url: `${domain}/` + result.rows[0]["linktree_url"],
     });
   } catch (e) {
     console.error("Terjadi error saat mengambil konten link-in-bio:", e);

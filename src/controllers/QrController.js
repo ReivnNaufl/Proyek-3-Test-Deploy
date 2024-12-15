@@ -1,7 +1,7 @@
 import qr from 'qrcode';
 import sharp from 'sharp';
 import path from 'path';
-import { __dirname } from '../../path.js';
+import { __dirname, domain } from '../../path.js';
 import Qr from '../models/qrModel.js';
 import cryptoRandomString from 'crypto-random-string';
 import fs from 'fs/promises';
@@ -316,7 +316,7 @@ const generateQRext = async (req, res) => {
     // Send response with the QR code as a data URI
     const base64Image = outputBuffer.toString('base64');
     const mimeType = 'image/png';
-    res.json({success : true, message: 'QR code generated successfully', url: `http://plbsh.polban.dev/tes/${namafile}.png` });
+    res.json({success : true, message: 'QR code generated successfully', url: `${domain}/tes/${namafile}.png` });
 
   } catch (error) {
     console.error('Error generating QR code:', error);

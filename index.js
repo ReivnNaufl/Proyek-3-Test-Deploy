@@ -13,17 +13,24 @@ import { log } from "console";
 import routerext from "./src/routes/external.js";
 import landingPageRouter from "./src/routes/landingpage.js";
 import cors from 'cors';
+import connectPgSimple from "connect-pg-simple";
 
 const PORT = 8000;
 const app = express();
 
+const pgSession = connectPgSimple(session);
+
 app.use(session({
-    secret: 'my-secret-key',
+    store: new pgSession({
+        pool : pool,
+        tableName: 'session',
+        createTableIfMissing: true,
+      }),
+    secret: process.env.FOO_COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }));
-
 
 
 app.use(express.json());
@@ -55,11 +62,15 @@ app.listen(PORT, () => {
     console.log(`Server utama running at port ${PORT}`);
 });
 
-app.get('/',checkAuth, (req, res) => {
-    res.sendFile(path.join(__dirname, 'src', 'views', 'index.html'));
+app.get('/', (req, res) => {
+    if (req.session.email) {
+        res.sendFile(path.join(__dirname, 'src', 'views', 'index.html'));
+    } else {
+        res.redirect('/landingpage');
+    }
 })
 
 app.get('/:id', shortlinkController.firstRedirect);
 
-
+app.get('/sl/:id', shortlinkController.secondRedirect);
 

@@ -9,6 +9,7 @@ import { __dirname } from '../../path.js';
 import { get } from 'https';
 import { google } from 'googleapis';
 import { oauth2 } from 'googleapis/build/src/apis/oauth2/index.js';
+import { domain } from '../../path.js';
 
 dotenv.config();
 
@@ -63,7 +64,7 @@ const sendVerificationEmail = async (email, otp, verificationToken) => {
         await sendMail();
     }
 
-    const verificationLink = `http://localhost:8000/account/vmail?token=${verificationToken}&email=${email}`;
+    const verificationLink = `${domain}/account/vmail?token=${verificationToken}&email=${email}`;
     const mailOptions = {
         from: {
             name: "Authenticator",

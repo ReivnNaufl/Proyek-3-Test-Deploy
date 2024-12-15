@@ -164,7 +164,7 @@
           data.btnArray.forEach((link) => {
             const button = document.createElement("a");
             // Use short_url for link, prefixed with base URL
-            button.href = `http://localhost:8000/${link.short}`;
+            button.href = `https://plbsh.polban.dev/${link.short}`;
             button.textContent = link.name;
             button.target = "_blank";
             button.rel = "noopener noreferrer";
@@ -215,7 +215,7 @@
             return shortlinkData.full_url;
           } catch (error) {
             console.error("Error fetching shortlink:", error);
-            return `http://localhost:8000/${shortlinkId}`;
+            return `https://plbsh.polban.dev/${shortlinkId}`;
           }
         }
 
@@ -322,7 +322,7 @@
               id_shortlink: "KsXi",
             },
           ],
-          url: "http://localhost:8000/mirasa",
+          url: "https://plbsh.polban.dev/mirasa",
         };
 
         initializeLinktreePage(receivedData);

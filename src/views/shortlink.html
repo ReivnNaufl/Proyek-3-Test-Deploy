@@ -79,7 +79,7 @@
             <h2>Create Short URL</h2>
 
             <form
-              action="http://localhost:8000/shortlink/config"
+              action="https://plbsh.polban.dev/shortlink/config"
               method="POST"
               id="short-url-form"
             >
@@ -242,7 +242,7 @@
         });
 
         function sendRequest(data) {
-          fetch("http://localhost:8000/shortlink/config", {
+          fetch("https://plbsh.polban.dev/shortlink/config", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
