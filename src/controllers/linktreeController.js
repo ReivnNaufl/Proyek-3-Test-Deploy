@@ -194,12 +194,6 @@ const getLinktree = async (req, res) => {
       });
       return;
     }
-    else if (result.rows[0]["email"] != req.session.email) {
-      res.status(403).send({
-        msg: "Forbidden",
-      });
-      return;
-    }
 
     const buttonData = await Button.getByExceptID("id_linktree", req.params.id);
 
