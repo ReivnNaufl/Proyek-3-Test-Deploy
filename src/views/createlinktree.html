@@ -83,7 +83,7 @@
             <h2>Create Page</h2>
 
             <form
-              action="http://localhost:8000/linktree/create-room"
+              action="https://plbsh.polban.dev/linktree/create-room"
               method="POST"
               id="linktree-form"
             >
@@ -100,7 +100,7 @@
               <div class="input-group">
                 <label for="url-input">Custom URL</label>
                 <div class="custom-url-container">
-                  <span class="url-prefix">plbsh.polban.dev/</span>
+                  <span class="url-prefix">plb.sh/</span>
                   <input
                     type="text"
                     id="url-input"
@@ -135,14 +135,15 @@
         const historyList = document.getElementById("room-history-list");
 
         function addRoomToHistory(room) {
+
           const historyItem = document.createElement("div");
           historyItem.classList.add("history-item");
           historyItem.innerHTML = `
           <i data-feather="link-2"></i>
           <div class="link-details">
-            <a href="http://plbsh.polban.dev/${
-              room.linktree_url
-            }">plbsh.polban.dev/${room.linktree_url}</a>
+            <a href="https://plbsh.polban.dev/${room.linktree_url}">plb.sh/${
+            room.linktree_url
+          }</a>
             <p><i data-feather="calendar"></i> ${
               room.time_linktree_last_updated ||
               new Date().toLocaleDateString("id-ID", {
@@ -153,14 +154,12 @@
             }</p>
           </div>
           <div class="actions">
-            <button onclick="copyToClipboard('http://plbsh.polban.dev/${
+            <button onclick="copyToClipboard('https://plbsh.polban.dev/${
               room.linktree_url
             }')">
               <i data-feather="copy"></i> Copy
             </button>
-            <button onclick="shareRoom('http://plbsh.polban.dev/${
-              room.linktree_url
-            }')">
+            <button onclick="shareRoom('https://plbsh.polban.dev/${room.linktree_url}')">
               <i data-feather="share-2"></i> Share
             </button>
             <button class="edit-button" data-id="${room.id_linktree}">
@@ -182,7 +181,7 @@
             console.log("Edit Button Clicked - Room ID:", roomId);
 
             if (roomId) {
-              window.location.href = `http://localhost:8000/linktree/room-edit?id=${roomId}`;
+              window.location.href = `https://plbsh.polban.dev/linktree/room-edit?id=${roomId}`;
             } else {
               console.error("No valid ID found for room:", room);
               alert("Unable to edit room: No identifier found.");
@@ -223,7 +222,7 @@
         async function fetchHistoryFromAPI() {
           try {
             const response = await fetch(
-              "http://localhost:8000/linktree/history"
+              "https://plbsh.polban.dev/linktree/history"
             );
             const rooms = await response.json();
             console.log("Parsed Rooms Data:", rooms);
@@ -267,7 +266,7 @@
           try {
             console.log("Fetching history..."); // Logging untuk memastikan fetch dipanggil
             const response = await fetch(
-              "http://localhost:8000/linktree/history"
+              "https://plbsh.polban.dev/linktree/history"
             );
 
             if (!response.ok) {
@@ -307,7 +306,7 @@
 
           try {
             const response = await fetch(
-              "/linktree/create-room",
+              "https://plbsh.polban.dev/linktree/create-room",
               {
                 method: "POST",
                 headers: {
@@ -389,7 +388,7 @@
         }
 
         // Kirim request ke backend untuk menghapus room
-        fetch(`/linktree/delete/${customUrl}`, {
+        fetch(`https://plbsh.polban.dev/linktree/delete/${customUrl}`, {
           method: "DELETE",
         });
       };
