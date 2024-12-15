@@ -2,6 +2,7 @@ import Shortlink from "../models/shortlinkModel.js";
 import cryptoRandomString from "crypto-random-string";
 import { __dirname } from "../../path.js";
 import path from "path";
+import { domain } from "../../path.js";
 
 const createSl = async (req, res) => {
   try {

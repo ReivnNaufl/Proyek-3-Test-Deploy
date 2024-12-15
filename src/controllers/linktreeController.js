@@ -7,6 +7,7 @@ import { shorten } from "./shortlinkController.js";
 import Shortlink from "../models/shortlinkModel.js";
 import { title } from "process";
 import { url } from "inspector";
+import { domain } from "../../path.js";
 
 async function isIDunique(id) {
   const result = await Linktree.exists("id_linktree", id);
