@@ -23,12 +23,12 @@
           alt="Logo"
         />
       </div>
-      <div class="nav flex-column">
-        <a href="/" class="nav-link mb-2" data-bs-toggle="tooltip" title="Home">
+      <!-- <div class="nav flex-column">
+        <a href="#" class="nav-link mb-2" data-bs-toggle="tooltip" title="Home">
           <i class="fas fa-home"></i>
         </a>
         <a
-          href="/shortlink"
+          href="#"
           class="nav-link mb-2"
           data-bs-toggle="tooltip"
           title="Links"
@@ -36,14 +36,14 @@
           <i class="fas fa-link"></i>
         </a>
         <a
-          href="/qr"
+          href="#"
           class="nav-link mb-2"
           data-bs-toggle="tooltip"
           title="QR Code"
         >
           <i class="fas fa-qrcode"></i>
         </a>
-      </div>
+      </div> -->
     </div>
 
     <div class="main-content">
@@ -480,6 +480,65 @@
         </div>
       </div>
     </div>
+
+    <!-- Add this modal for editing the URL -->
+    <div
+      class="modal fade"
+      id="editUrlModal"
+      tabindex="-1"
+      aria-labelledby="editUrlModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editUrlModalTitle">
+              Edit Linktree URL
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="editUrlForm" novalidate>
+              <div class="mb-3">
+                <label for="newLinktreeUrl" class="form-label"
+                  >New Linktree URL</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newLinktreeUrl"
+                  name="newLinktreeUrl"
+                  required
+                  placeholder="Enter new URL"
+                />
+                <div class="invalid-feedback">Please provide a valid URL.</div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-primary" id="updateUrlButton">
+              Update URL
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add this button before the save-changes-btn, positioning it to the left with some spacing -->
+    <button class="edit-url-btn" type="button" data-id="1">Edit URL</button>
+    <button class="edit-url-btn" type="button" data-id="2">Edit URL</button>
 
     <button class="save-changes-btn" onclick="saveChanges()">
       Save Changes

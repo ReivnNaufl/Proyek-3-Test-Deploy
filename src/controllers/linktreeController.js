@@ -126,8 +126,21 @@ const editLinktreeURL = async (req, res) => {
     //   return;
     // };
 
+    const url = shorten(
+      "http://localhost:8000/linktree/room?id=${id}",
+      req.session.email,
+      body.url,
+      "linktree"
+    );
+    if (url === null) {
+      res.status(500).send({
+        msg: "Terjadi kesalahan server",
+      });
+      return;
+    }
+
     await Linktree.update("linktree_url", body.url, "id_linktree", id);
-    res.status(200).send("success");
+    res.status(200).send({msg : "success"});
   } catch (e) {
     console.error("Terjadi error saat mengupdate URL link-in-bio:", e);
     res.status(500).send({
@@ -178,6 +191,12 @@ const getLinktree = async (req, res) => {
     if (result.rowCount === 0) {
       res.status(404).send({
         msg: "Linktree tidak ditemukan!",
+      });
+      return;
+    }
+    else if (result.rows[0]["email"] != req.session.email) {
+      res.status(403).send({
+        msg: "Forbidden",
       });
       return;
     }
@@ -237,7 +256,7 @@ const getLinktreeHistory = async (req, res) => {
     }
     
     res.status(200).send({
-      historyArray: result.rows
+      historyArray: result.rows,
     });
   } catch (e) {
     console.error("Terjadi error saat menampilkan linktree history:", e);
@@ -256,5 +275,5 @@ export default {
   linktreeRoomEdit,
   deleteLinktree,
   editLinktreeURL,
-  getLinktreeHistory
+  getLinktreeHistory,
 };

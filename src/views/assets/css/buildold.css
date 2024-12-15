@@ -32,13 +32,13 @@
 }
 
 .logo-sidebar {
-  width: 50px; /* Adjust size as needed */
-  height: 50px; /* Adjust size as needed */
+  width: 48px; /* Adjust size as needed */
+  height: 48px; /* Adjust size as needed */
   border-radius: 50%; /* Creates a perfectly circular shape */
   object-fit: cover; /* Ensures the image fills the circle without distortion */
   position: fixed; /* Or absolute, depending on your layout */
   top: 15px; /* Adjust distance from top */
-  left: 15px; /* Adjust distance from left */
+  left: 7px; /* Adjust distance from left */
   z-index: 1000; /* Ensures it stays on top of other elements */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
   cursor: pointer; /* Optional: changes cursor on hover */
@@ -401,4 +401,21 @@
 
 .custom-input button:hover {
   background-color: #0056b3;
+}
+
+.edit-url-btn {
+  position: fixed;
+  bottom: 50px;
+  left: 90px; /* Adjust this to position it to the left of Save Changes */
+  background-color: #6c757d; /* Similar to a secondary button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.edit-url-btn:hover {
+  background-color: #5a6268;
 }
