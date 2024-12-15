@@ -1040,7 +1040,7 @@ async function saveChanges() {
     };
 
     const response = await fetch(
-      `http://localhost:8000/linktree/save?id=${idLinktree}`,
+      `https://plbsh.polban.dev/linktree/save?id=${idLinktree}`,
       {
         method: "PATCH",
         headers: {
@@ -1264,102 +1264,6 @@ async function urlToBase64(url) {
     img.onerror = reject;
     img.src = url;
   });
-}
-
-// Modifikasi event listener
-document.addEventListener("DOMContentLoaded", function () {
-  const editUrlButtons = document.querySelectorAll(".edit-url-btn");
-  editUrlButtons.forEach((button) => {
-    button.addEventListener("click", showEditUrlModal);
-  });
-
-  const updateUrlButton = document.getElementById("updateUrlButton");
-  if (updateUrlButton) {
-    updateUrlButton.addEventListener("click", updateLinktreeUrl);
-  }
-});
-
-function showEditUrlModal(event) {
-  try {
-    // Dapatkan tombol Edit URL yang diklik
-    const editButton = event.target;
-
-    // Ambil ID dari tombol Edit URL
-    const linktreeId = editButton.getAttribute("data-id");
-    if (!linktreeId) {
-      console.error("Linktree ID not found");
-      return;
-    }
-
-    // Set data-id pada tombol Update URL di modal
-    const updateButton = document.querySelector("#editUrlModal .btn-primary");
-    if (updateButton) {
-      updateButton.setAttribute("data-id", linktreeId);
-    }
-
-    // Tampilkan modal
-    if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
-      const editUrlModal = new bootstrap.Modal(
-        document.getElementById("editUrlModal")
-      );
-      editUrlModal.show();
-    } else {
-      console.error("Bootstrap Modal is not loaded");
-      alert("Unable to open modal. Please check your bootstrap library.");
-    }
-  } catch (error) {
-    console.error("Error showing modal:", error);
-    alert("An error occurred while opening the modal.");
-  }
-}
-
-function updateLinktreeUrl() {
-  // Ambil URL saat ini
-  const currentUrl = window.location.href;
-
-  // Ekstrak ID dari query parameter
-  const urlParams = new URLSearchParams(window.location.search);
-  const linktreeId = urlParams.get("id");
-
-  if (!linktreeId) {
-    alert("Invalid linktree ID");
-    return;
-  }
-
-  const newUrlInput = document.getElementById("newLinktreeUrl");
-  if (!newUrlInput || !newUrlInput.value) {
-    alert("Please enter a valid URL");
-    return;
-  }
-
-  const newUrl = newUrlInput.value;
-
-  fetch(`/linktree/edit-url?id=${linktreeId}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ url: newUrl }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      alert("URL updated successfully");
-      const editUrlModal = bootstrap.Modal.getInstance(
-        document.getElementById("editUrlModal")
-      );
-      if (editUrlModal) {
-        editUrlModal.hide();
-      }
-    })
-    .catch((error) => {
-      console.error("Full error:", error);
-      alert(`Error: ${error.message}`);
-    });
 }
 
 // Tambahkan event listener untuk menyimpan perubahan
