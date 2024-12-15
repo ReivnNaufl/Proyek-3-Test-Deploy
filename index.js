@@ -15,13 +15,10 @@ import landingPageRouter from "./src/routes/landingpage.js";
 import cors from 'cors';
 import connectPgSimple from "connect-pg-simple";
 import pool from "./config/config.js";
-import dotenv from 'dotenv';
 
 const app = express();
 
 const pgSession = connectPgSimple(session);
-
-dotenv.config();
 
 app.use(session({
     store: new pgSession({
@@ -62,7 +59,7 @@ app.use('/tes',cors(),routerext);
 app.use('/landingpage', landingPageRouter)
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server utama running at port ${PORT}`);
+    console.log(`Server utama running at port ${process.env.PORT}`);
 });
 
 app.get('/', (req, res) => {
